@@ -16,7 +16,7 @@ export async function POST(request) {
     const payload = { msg: "successfully added departure" };
 
     // Sign the JWT with a 50-second expiration
-    const token = jwt.sign(payload, secret, { expiresIn: "30s" });
+    const token = jwt.sign(payload, secret, { expiresIn: "7s" });
 
     // Send the token as a JSON response
     return NextResponse.json({ token });

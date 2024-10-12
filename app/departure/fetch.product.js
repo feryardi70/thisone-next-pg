@@ -38,10 +38,10 @@ export async function saveDeparture(departureData) {
       },
     });
 
-    console.log(tokenResponse);
+    //console.log(tokenResponse);
 
     const tokenData = await tokenResponse.json();
-    console.log(tokenData);
+    //console.log(tokenData);
 
     localStorage.setItem("addtoken", tokenData.token);
     return response; // Return the response back to the client

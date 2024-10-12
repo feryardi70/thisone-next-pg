@@ -13,7 +13,7 @@ const geistMono = localFont({
 });
 
 export const metadata = {
-  title: "Create Next App",
+  title: "ThisOne Next App",
 };
 
 export default function RootLayout({ children }) {
