@@ -27,19 +27,20 @@ export default function DepartureList() {
   const handleDelete = async (id) => {
       try {
         const response = await axiosInstance.delete(`/departure/${selectedDepartureId}`);
+        console.log(response);
         
-        if (response.statusText == "OK") {
+        if (response.status == 200) {
           alert("successfully delete departure");
           
-          setTimeout(() => {
-            window.location.reload();
-          }, 500);
         }
       } catch (error) {
         console.error("Error deleting departure:", error);
       } finally {
         closeModal(); 
       }
+      setTimeout(() => {
+        window.location.reload();
+      }, 500);
   };
 
   const renderDepartures = () => {

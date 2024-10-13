@@ -46,7 +46,7 @@ export default function InsertDeparture() {
       //console.log(departureData);
       saveDeparture(departureData).then((response) => {
         //console.log(response);
-        if (response.statusText == "Created") {
+        if (response.status == 201) {
           alert("Departure added successfully!");
           //router.push("/departure");
         } else {

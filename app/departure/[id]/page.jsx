@@ -162,7 +162,7 @@ export default function EditDeparture() {
     };
     editDeparture(departureData.id, departureData).then((response) => {
       console.log(response);
-      if (response.data.msg === "successfully edit Departure") {
+      if (response.status == 200) {
         alert("successfully Edit Departure!");
         //router.push("/departure");
       } else {
