@@ -1,6 +1,15 @@
 import Link from "next/link";
+import { redirect } from "next/navigation";
+import getSession from "./session";
 
-export default function Home() {
+export default async function Home() {
+  const session = await getSession();
+
+  if (!session) {
+    // Redirect to login if no session is found
+    redirect("/login");
+  }
+
   return (
     <div className="flex flex-wrap flex-row">
       <div className="sm:hidden md:inline w-1/6 bg-blue-700 h-screen">
@@ -15,7 +24,7 @@ export default function Home() {
         <div className="min-h-16 flex flex-row justify-between px-5 items-center border-b-2 border-b-red-600">
           <div className="ml-5 text-4xl text-transparent tracking-wide bg-clip-text bg-gradient-to-r from-blue-900 to-black">FLIGHT DASHBOARD</div>
           <div className="min-w-20 py-2 bg-fuchsia-600 text-center rounded">
-            <a className="px-2 text-base text-white" href="/logout">
+            <a className="px-2 text-base text-white" href="/api/auth/signout">
               logout
             </a>
           </div>

@@ -25,3 +25,26 @@ model Departure {
 
   @@map("departures")
 }
+
+model Arrival {
+  id            Int     @id @default(autoincrement())
+  airline       String
+  flightnumber  String
+  destination   String
+  departdate    String
+  departtime    String
+  gate          String
+  remark        String
+
+  @@map("arrivals")
+}
+
+model User {
+  id            Int       @id @default(autoincrement())
+  username      String
+  password      String
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  @@map("users")
+}
