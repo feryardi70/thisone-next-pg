@@ -206,7 +206,7 @@ export default function InsertDeparture() {
             </div>
           </div>
 
-          <button type="submit" className="px-2 py-2 bg-fuchsia-500 rounded text-white cursor-default">
+          <button type="submit" className="px-2 py-2 bg-fuchsia-500 rounded text-white">
             Add
           </button>
         </form>

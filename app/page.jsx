@@ -43,7 +43,7 @@ export default async function Home() {
             <Link href="/arrival" target="_blank" rel="noopener noreferrer">
               <img className="rounded-lg img-depart" src="/img/arrival2.jpg" alt="" />
             </Link>
-            <Link href="http://127.0.0.1:3000/arrival" target="_blank" rel="noopener noreferrer">
+            <Link href="/arrival" target="_blank" rel="noopener noreferrer">
               <h3 className="text-center text-white text-3xl bg-blue-600 py-2">Manage Arrival</h3>
             </Link>
           </div>
