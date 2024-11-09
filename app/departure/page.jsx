@@ -109,11 +109,17 @@ export default function DepartureList() {
           <h1 className="text-4xl tracking-wide mb-3">Departure Dashboard</h1>
         </div>
         <div className="mb-3">
-          <span className="px-3 py-3 bg-sky-950 text-white">Home</span>
+          <span className="px-3 py-3 bg-sky-950 text-white">
+            <Link href="/">Home</Link>
+          </span>
           <span className="px-3 py-3 bg-sky-950 text-white">
             <Link href="/departure/add">Add Departure</Link>
           </span>
-          <span className="px-3 py-3 bg-sky-950 text-white">View Departure</span>
+          <span className="px-3 py-3 bg-sky-950 text-white">
+            <Link href="/viewdeparture" target="_blank">
+              View Departure
+            </Link>
+          </span>
         </div>
 
         <table className="my-4 w-full border-collapse">

@@ -15,9 +15,21 @@ export default async function Home() {
       <div className="sm:hidden md:inline w-1/6 bg-blue-700 h-screen">
         <div className="text-white text-2xl tracking-wide">
           <div className="ml-5 mt-3 text-yellow-300">Side Bar</div>
-          <div className="ml-5 mt-3 hover:bg-fuchsia-600">Departure Dashboard</div>
-          <div className="ml-5 mt-3 hover:bg-fuchsia-600">Arrival Dashboard</div>
-          <div className="ml-5 mt-3 hover:bg-fuchsia-600">8 Wisata di Nias</div>
+          <div className="ml-5 mt-3 hover:bg-fuchsia-600">
+            <Link href="/departure" target="_blank">
+              Departure Dashboard
+            </Link>
+          </div>
+          <div className="ml-5 mt-3 hover:bg-fuchsia-600">
+            <Link href="/arrival" target="_blank">
+              Arrival Dashboard
+            </Link>
+          </div>
+          <div className="ml-5 mt-3 hover:bg-fuchsia-600">
+            <Link href="/wisata" target="_blank">
+              8 Wisata di Nias
+            </Link>
+          </div>
         </div>
       </div>
       <div className="w-5/6 bg-nias">

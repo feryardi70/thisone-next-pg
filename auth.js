@@ -1,6 +1,8 @@
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import prisma from "./app/api/db";
+//import bcrypt from "bcrypt";
+import checkPass from "./app/features/bcompare";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   session: { strategy: "jwt", maxAge: 60 * 60 * 4 },
@@ -19,19 +21,18 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       authorize: async (credentials, request) => {
         let user = null;
 
-        //const username = process.env.AUTH_USERNAME;
-        //const password = process.env.AUTH_PASS;
-
         const dbuser = await prisma.User.findFirst({
           where: {
             username: credentials.username,
           },
         });
-        //console.log(dbuser);
+
+        const pwMatch = checkPass(credentials.password, dbuser.password);
+        //console.log(pwMatch);
 
         user = { id: "66edb898", username: dbuser.username };
 
-        if (credentials.username == dbuser.username && credentials.password == dbuser.password) {
+        if (credentials.username == dbuser.username && pwMatch) {
           return user;
         } else {
           return null;
