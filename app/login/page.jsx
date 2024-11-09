@@ -39,7 +39,7 @@ export default function SignIn() {
       if (result) {
         setError("Authentication failed, wrong username and password combination");
       } else {
-        console.log("Login successful");
+        setError("");
       }
     } catch (error) {
       setError("An error occurred during login. Please try again.");
