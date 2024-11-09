@@ -1,16 +1,30 @@
 "use client";
 
-//import Link from "next/link";
-//import { useState, useEffect } from "react";
-//import axios from "axios";
-//import { useParams } from "next/navigation";
-//import { axiosInstance } from "@/app/features/axios.instance";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useFormik } from "formik";
 import { saveDeparture } from "../fetch.product";
+import getSession from "@/app/session";
 
 export default function InsertDeparture() {
   const router = useRouter();
+  const [session, setSession] = useState(null);
+
+  useEffect(() => {
+    const fetchSession = async () => {
+      const result = await getSession();
+
+      setSession(result ? true : false);
+    };
+
+    fetchSession();
+  }, []);
+
+  useEffect(() => {
+    if (session === false) {
+      router.push("/login");
+    }
+  }, [session, router]);
 
   // const [data, setData] = useState({
   //   airline: "",
