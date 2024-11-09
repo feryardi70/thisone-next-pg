@@ -27,16 +27,18 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           },
         });
 
-        const pwMatch = checkPass(credentials.password, dbuser.password);
-        //console.log(pwMatch);
-
-        user = { id: "66edb898", username: dbuser.username };
-
-        if (credentials.username == dbuser.username && pwMatch) {
-          return user;
-        } else {
+        if (!dbuser) {
           return null;
         }
+
+        const pwMatch = await checkPass(credentials.password, dbuser.password);
+
+        if (!pwMatch) {
+          return null;
+        }
+
+        user = { id: "66edb898", username: dbuser.username };
+        return user;
       },
     }),
   ],
