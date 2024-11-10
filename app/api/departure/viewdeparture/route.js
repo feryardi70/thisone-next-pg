@@ -2,15 +2,8 @@ import { NextResponse } from "next/server";
 import prisma from "../../db";
 
 export async function GET(request) {
-  const datetime = new Date();
-  const yyyy = datetime.getFullYear().toString();
-  let mm = datetime.getMonth() + 1;
-  let dd = datetime.getDate().toString();
-
-  const bulan = mm < 10 ? "0" + mm : mm;
-  const hari = dd < 10 ? "0" + dd : dd;
-
-  const formattedToday = yyyy + "-" + mm + "-" + dd;
+  const { searchParams } = new URL(request.url);
+  const formattedToday = searchParams.get("departdate");
   console.log(formattedToday);
 
   const departures = await prisma.Departure.findMany({
@@ -21,6 +14,6 @@ export async function GET(request) {
       departtime: "asc",
     },
   });
-  console.log(departures);
+  //console.log(departures);
   return NextResponse.json({ departures }, { status: 201 });
 }

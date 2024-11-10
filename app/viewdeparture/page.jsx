@@ -13,10 +13,20 @@ export default function viewDeparture() {
   useEffect(() => {
     const fetchDepartures = async () => {
       try {
-        const response = await axiosInstance.get("/departure/viewdeparture");
+        const dtime = new Date();
+        const year = dtime.getFullYear().toString();
+        let m = dtime.getMonth() + 1;
+        let day = dtime.getDate().toString();
+
+        const month = m < 10 ? "0" + m : m;
+        const hh = day < 10 ? "0" + day : day;
+
+        const formattedDay = year + "-" + month + "-" + hh;
+
+        const response = await axiosInstance.get("/departure/viewdeparture", { params: { departdate: formattedDay } });
         const departures = await response.data.departures;
         setDepartures(departures);
-        console.log(departures);
+        //console.log(departures);
         setLoading(false);
       } catch (error) {
         console.error("Error fetching departures data:", error);
