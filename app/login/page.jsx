@@ -27,10 +27,12 @@ export default function SignIn() {
 
   const [formState, setFormState] = useState({ username: "", password: "" });
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const formAction = async (e) => {
     e.preventDefault();
     setError("");
+    setLoading(true);
 
     try {
       const result = await signInCredentials(formState);
@@ -45,6 +47,8 @@ export default function SignIn() {
       setError("An error occurred during login. Please try again.");
       console.error("Error:", error);
     }
+
+    setLoading(false);
   };
 
   const handleChange = (e) => {
@@ -70,8 +74,8 @@ export default function SignIn() {
               Password
             </label>
             <input className="border mb-1 pl-1" name="password" id="password" type="password" required value={formState.password} onChange={handleChange} />
-            <button className="mt-4 bg-fuchsia-400 text-lg py-1" type="submit">
-              Login
+            <button className="mt-4 bg-fuchsia-400 text-lg py-1" type="submit" disabled={loading}>
+              {loading ? "Authenticating..." : "Login"} {/* Show loading text */}
             </button>
           </div>
         </form>

@@ -12,6 +12,7 @@ export default function EditDeparture() {
   const router = useRouter();
   const { id } = useParams();
   const [departure, setDeparture] = useState({});
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchProductById = async () => {
@@ -149,6 +150,7 @@ export default function EditDeparture() {
 
   const handleSubmitForEdit = (e) => {
     e.preventDefault();
+    setLoading(true);
     // Handle form submission logic
     const departureData = {
       airline: departure.airline,
@@ -163,6 +165,7 @@ export default function EditDeparture() {
     editDeparture(departureData.id, departureData).then((response) => {
       console.log(response);
       if (response.status == 200) {
+        setDeparture(false);
         alert("successfully Edit Departure!");
         //router.push("/departure");
       } else {
@@ -181,7 +184,7 @@ export default function EditDeparture() {
         <form onSubmit={(e) => handleSubmitForEdit(e)} className="flex flex-col">
           {renderDeparture()}
           <button type="submit" className="px-2 py-2 bg-fuchsia-500 rounded text-white">
-            Edit
+            {loading ? "Processing..." : "Edit"}
           </button>
         </form>
       </div>

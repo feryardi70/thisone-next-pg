@@ -8,13 +8,16 @@ export default function SignIn() {
   const router = useRouter();
   const [formState, setFormState] = useState({ username: "", password: "", confirmPassword: "" });
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const formAction = async (e) => {
     e.preventDefault();
     setError("");
+    setLoading(true);
 
     if (formState.password !== formState.confirmPassword) {
       setError("Passwords do not match");
+      setLoading(false);
       return;
     }
 
@@ -25,6 +28,7 @@ export default function SignIn() {
 
       if (user) {
         setError("Username already exists");
+        setLoading(false);
         return;
       }
 
@@ -35,14 +39,17 @@ export default function SignIn() {
 
       if (response.status === 201) {
         alert("User registered successfully!");
+        setLoading(false);
         // Redirect or reset form here if needed
         router.push("/login");
       } else {
         console.log("Failed to register user!");
+        setLoading(false);
       }
     } catch (error) {
       setError("An error occurred during registration. Please try again.");
       console.error("Error:", error);
+      setLoading(false);
     }
   };
 
@@ -74,7 +81,7 @@ export default function SignIn() {
             </label>
             <input className="border mb-1 pl-1" name="confirmPassword" id="confirmPassword" type="password" required value={formState.confirmPassword} onChange={handleChange} />
             <button className="mt-4 bg-fuchsia-400 text-lg py-1" type="submit">
-              Register
+              {loading ? "Registering..." : "Register"}
             </button>
           </div>
         </form>
