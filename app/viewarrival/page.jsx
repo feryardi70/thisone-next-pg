@@ -102,7 +102,7 @@ export default function viewArrival() {
             arrivals.map((arrive, index) => (
               <tr key={index}>
                 <td className="border-b border-white p-2 w-[25%]">
-                  <div className="flex flex-row items-center justify-center">
+                  <div className="flex flex-row items-center justify-start">
                     <div className="tampillogo">{getLogo(arrive.airline) && <img src={getLogo(arrive.airline)} alt={`${arrive.airline} logo`} />}</div>
                     <div className="ml-5">
                       <span className="maskapai">{arrive.airline.toUpperCase()}</span>

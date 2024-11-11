@@ -102,7 +102,7 @@ export default function viewDeparture() {
             departures.map((depart, index) => (
               <tr key={index}>
                 <td className="border-b border-white p-2 w-[25%]">
-                  <div className="flex flex-row items-center justify-center">
+                  <div className="flex flex-row items-center justify-start">
                     <div className="tampillogo">{getLogo(depart.airline) && <img src={getLogo(depart.airline)} alt={`${depart.airline} logo`} />}</div>
                     <div className="ml-5">
                       <span className="maskapai">{depart.airline.toUpperCase()}</span>
