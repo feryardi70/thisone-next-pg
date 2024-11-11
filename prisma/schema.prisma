@@ -30,10 +30,10 @@ model Arrival {
   id            Int     @id @default(autoincrement())
   airline       String
   flightnumber  String
-  destination   String
-  departdate    String
-  departtime    String
-  gate          String
+  origin        String
+  arrivedate    String
+  arrivetime    String
+  baggage       String
   remark        String
 
   @@map("arrivals")
