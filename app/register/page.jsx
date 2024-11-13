@@ -71,15 +71,15 @@ export default function SignIn() {
             <label className="text-lg" htmlFor="username">
               Username
             </label>
-            <input className="border mb-1 pl-1" name="username" id="username" type="text" required value={formState.username} onChange={handleChange} />
+            <input className="border mb-1 pl-1" name="username" id="username" type="text" placeholder="username" required value={formState.username} onChange={handleChange} />
             <label className="text-lg" htmlFor="password">
               Password
             </label>
-            <input className="border mb-1 pl-1" name="password" id="password" type="password" required value={formState.password} onChange={handleChange} />
+            <input className="border mb-1 pl-1" name="password" id="password" type="password" placeholder="********" required value={formState.password} onChange={handleChange} />
             <label className="text-lg" htmlFor="confirmPassword">
               Confirm Password
             </label>
-            <input className="border mb-1 pl-1" name="confirmPassword" id="confirmPassword" type="password" required value={formState.confirmPassword} onChange={handleChange} />
+            <input className="border mb-1 pl-1" name="confirmPassword" id="confirmPassword" type="password" placeholder="********" required value={formState.confirmPassword} onChange={handleChange} />
             <button className="mt-4 bg-fuchsia-400 text-lg py-1" type="submit">
               {loading ? "Registering..." : "Register"}
             </button>
