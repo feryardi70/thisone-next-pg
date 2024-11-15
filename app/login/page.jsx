@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { signInCredentials } from "../action/signin";
 import getSession from "../session";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function SignIn() {
   const router = useRouter();
@@ -79,6 +80,12 @@ export default function SignIn() {
             </button>
           </div>
         </form>
+        <div className="mt-2">
+          Forgot password?{" "}
+          <Link href="/forgot" className="text-blue-600">
+            click here
+          </Link>
+        </div>
       </div>
     </div>
   );
