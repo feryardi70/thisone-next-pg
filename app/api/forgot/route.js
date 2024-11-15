@@ -5,6 +5,7 @@ import prisma from "../db";
 import { cookies } from "next/headers";
 import { generateToken } from "./token.service";
 import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 
 export async function POST(request) {
   try {
@@ -16,7 +17,7 @@ export async function POST(request) {
       },
     });
 
-    const resetToken = generateToken({ username: user.username });
+    const resetToken = generateToken({ id: user.id, username: user.username });
 
     cookies().set({
       name: "resetToken",
@@ -35,20 +36,36 @@ export async function PATCH(request) {
   try {
     const { password } = await request.json();
 
-    const token = cookies().get(resetToken);
+    const token = cookies().get("resetToken")?.value;
+
+    if (!token) {
+      //No resetToken Provided = unauthorized
+      return NextResponse.json({ msg: "bad request, server is loafing around" }, { status: 400 });
+    }
+
+    let decoded;
+    try {
+      decoded = jwt.verify(token, process.env.ADD_TOKEN);
+    } catch (error) {
+      if (error.name === "TokenExpiredError") {
+        //token expired
+        return NextResponse.json({ msg: "Reset password process is expired, please repeat the process" }, { status: 401 });
+      }
+      //invalid token
+      return NextResponse.json({ msg: "server is loafing around" }, { status: 400 });
+    }
+
+    const { id } = decoded;
+
+    if (!id) {
+      return NextResponse.json({ msg: "server is loafing around, invalid request" }, { status: 400 });
+    }
+
+    // Hash the new password
     const hashPass = await bcrypt.hash(password, 10);
 
-    const decoded = jwt.verify(token, process.env.ADD_TOKEN);
-    const username = decoded.username;
-
-    const user = await prisma.User.findFirst({
-      where: {
-        username,
-      },
-    });
-
     await prisma.user.update({
-      where: { id: user.id },
+      where: { id: parseInt(id) },
       data: {
         password: hashPass,
       },
@@ -58,7 +75,7 @@ export async function PATCH(request) {
       name: "resetToken",
       value: null,
       httpOnly: true,
-      maxAge: 1200,
+      maxAge: 50,
     });
 
     return NextResponse.json({ msg: "ok!" }, { status: 200 });

@@ -6,7 +6,7 @@ export function generateToken(payload) {
 
   // Define the token options, e.g., expiration time
   const options = {
-    expiresIn: "1200",
+    expiresIn: "1200s",
   };
 
   // Sign and return the token

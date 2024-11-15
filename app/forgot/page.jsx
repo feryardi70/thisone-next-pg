@@ -20,7 +20,7 @@ export default function SignIn() {
       const result = await axiosInstance.post("/forgot", formState);
       //console.log("Response from signInCredentials:", result.data);
 
-      if (result.data.user) {
+      if (!loading && result.data.user) {
         router.push("/reset");
       } else {
         setError("Username not found (if you forgot your username, you can not reset your password)");
@@ -53,7 +53,7 @@ export default function SignIn() {
             </label>
             <input className="border mb-1 pl-1" name="username" id="username" type="text" placeholder="type your username" required value={formState.username} onChange={handleChange} />
             <button className="mt-4 bg-fuchsia-400 text-lg py-1" type="submit" disabled={loading}>
-              {loading ? "Authenticating..." : "Confirm"} {/* Show loading text */}
+              {loading ? "Checking..." : "Confirm"} {/* Show loading text */}
             </button>
           </div>
         </form>

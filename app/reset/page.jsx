@@ -18,23 +18,38 @@ export default function SignIn() {
 
     if (formState.password !== formState.confirmPassword) {
       setError("password do not match");
+      setLoading(false);
+      return;
     }
 
     try {
       const result = await axiosInstance.patch("/forgot", formState);
-      //console.log("Response from signInCredentials:", result.data);
 
-      if (result.data.user) {
+      if (!loading && result.status == 200) {
+        alert("Password successfully changed");
         router.push("/login");
       } else {
-        setError("failed to reset password");
+        setError("Failed to reset password");
       }
     } catch (error) {
-      setError("An error occurred. Please try again.");
+      if (error.response) {
+        // Handle server response errors
+        if (error.response.data.msg === "Token has expired") {
+          setError("Reset password process is expired");
+        } else {
+          setError(error.response.data.msg || "Failed to reset password");
+        }
+      } else if (error.request) {
+        // Handle no server response
+        setError("Server did not respond. Please try again.");
+      } else {
+        // Handle client-side or setup errors
+        setError("An error occurred. Please try again.");
+      }
       console.error("Error:", error);
+    } finally {
+      setLoading(false);
     }
-
-    setLoading(false);
   };
 
   const handleChange = (e) => {
@@ -61,7 +76,7 @@ export default function SignIn() {
             </label>
             <input className="border mb-1 pl-1" name="confirmPassword" id="confirmPassword" type="password" placeholder="********" required value={formState.confirmPassword} onChange={handleChange} />
             <button className="mt-4 bg-fuchsia-400 text-lg py-1" type="submit" disabled={loading}>
-              {loading ? "Authenticating..." : "Confirm"} {/* Show loading text */}
+              {loading ? "Processing..." : "Confirm"} {/* Show loading text */}
             </button>
           </div>
         </form>
