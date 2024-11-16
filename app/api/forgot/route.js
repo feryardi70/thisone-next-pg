@@ -17,6 +17,10 @@ export async function POST(request) {
       },
     });
 
+    if (!user) {
+      return NextResponse.json({ msg: "not found" });
+    }
+
     const resetToken = generateToken({ id: user.id, username: user.username });
 
     cookies().set({

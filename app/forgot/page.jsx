@@ -20,10 +20,12 @@ export default function SignIn() {
       const result = await axiosInstance.post("/forgot", formState);
       //console.log("Response from signInCredentials:", result.data);
 
-      if (!loading && result.data.user) {
+      if (result.data.user) {
         router.push("/reset");
-      } else {
+      } else if (result.data.msg == "not found") {
         setError("Username not found (if you forgot your username, you can not reset your password)");
+      } else {
+        setError("Server error, Please try again");
       }
     } catch (error) {
       setError("An error occurred. Please try again.");
