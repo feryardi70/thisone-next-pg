@@ -17,7 +17,7 @@ export const signInCredentials = async (formData) => {
           return { message: "something went wrong" };
       }
     }
-    console.log(error.message);
+    //console.log(error.message);
     throw error;
   }
 };

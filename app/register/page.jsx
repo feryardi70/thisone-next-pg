@@ -4,7 +4,7 @@ import { useState } from "react";
 import { axiosInstance } from "../features/axios.instance";
 import { useRouter } from "next/navigation";
 
-export default function SignIn() {
+export default function SignUp() {
   const router = useRouter();
   const [formState, setFormState] = useState({ username: "", password: "", confirmPassword: "" });
   const [error, setError] = useState("");
