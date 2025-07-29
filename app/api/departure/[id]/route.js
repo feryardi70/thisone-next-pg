@@ -4,7 +4,7 @@ import prisma from "../../db";
 export async function PUT(request, { params }) {
   //const id = params.id;
   const { id, airline, flightnumber, destination, departdate, departtime, gate, remark } = await request.json();
-  //await dbConnect;
+  
   await prisma.Departure.update({
     where: {
       id: id,
@@ -24,7 +24,7 @@ export async function PUT(request, { params }) {
 
 export async function GET(request, { params }) {
   const { id } = params;
-  //await dbConnect;
+  
   const departure = await prisma.Departure.findUnique({
     where: {
       id: parseInt(id),
@@ -37,7 +37,7 @@ export async function DELETE(request, { params }) {
   const departId = params.id;
   console.log(departId);
   const id = parseInt(departId, 10);
-  //await dbConnect;
+  
   await prisma.Departure.delete({
     where: { id: id },
   });

@@ -1,7 +1,5 @@
 import { useState, useEffect } from "react";
 import { axiosInstance } from "../features/axios.instance";
-//import dotenv from "dotenv";
-//import jwt from "jsonwebtoken";
 
 export const useDepartures = () => {
   const [departures, setDepartures] = useState([]);
@@ -11,7 +9,7 @@ export const useDepartures = () => {
     try {
       const response = await axiosInstance.get("/departure");
       const departures = await response.data.departures;
-      //JSON.stringify({ ...departures, id: Number(departures.id) });
+      
       setDepartures(departures);
       setIsLoading(false);
     } catch (error) {
@@ -37,8 +35,6 @@ export async function saveDeparture(departureData) {
         "Content-Type": "application/json",
       },
     });
-
-    //console.log(tokenResponse);
 
     const tokenData = await tokenResponse.json();
     //console.log(tokenData);

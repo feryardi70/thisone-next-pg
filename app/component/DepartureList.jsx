@@ -1,58 +1,9 @@
 import Link from "next/link";
-
-// const getDeparture = async () => {
-//   try {
-//     const res = await fetch("http://127.0.0.1:3000/api/departure", {
-//       cache: "no-store",
-//     });
-
-//     //console.log(res.json());
-
-//     if (!res.ok) {
-//       throw new Error("failed to fetch data");
-//     }
-
-//     //console.log(res.json());
-//     return res.json();
-//   } catch (error) {
-//     console.log(error.message);
-//   }
-// };
-
-import { useState, useEffect } from "react";
-//import axios from "axios";
 import { axiosInstance } from "../features/axios.instance";
 import SpinnerCss from "./spinnercss";
 import { useQuery } from "@tanstack/react-query";
-//import App from "./tanstack"
-//import { useDeparture } from "./fetch.product";
-
-// useEffect(() => {
-//   fetchProducts();
-// }, []);
 
 export default function DepartureList() {
-  //const departs = await getDeparture();
-  //console.log(departs);
-  // const [departures, setDepartures] = useState([]);
-  // const [isLoading, setIsLoading] = useState(true);
-
-  // const fetchProducts = async () => {
-  //   //const [departures, setDepartures] = useState([]);
-  //   try {
-  //     const departureResponse = await axiosInstance.get("/departure");
-  //     //console.log(departureResponse.data);
-  //     setDepartures(departureResponse.data.departures);
-  //     setIsLoading(false);
-  //   } catch (error) {
-  //     console.log(error.message);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   fetchProducts();
-  // }, []);
-
   const { data, isLoading } = useQuery({
     queryFn: async () => {
       const departureResponse = await axiosInstance.get("/departure");

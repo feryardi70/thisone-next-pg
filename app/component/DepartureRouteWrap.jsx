@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import getSession from "../session";
+import { ProtectedRouteLoader } from "./RouteLoader";
 
 export default function DepartureRoute({ children }) {
   const [isAuthenticated, setIsAuthenticated] = useState(null);
@@ -24,7 +25,7 @@ export default function DepartureRoute({ children }) {
   }, [router]);
 
   if (loading) {
-    return <div className="text-5xl">Loading... please wait...</div>;
+    return <div><ProtectedRouteLoader /></div>;
   }
 
   return isAuthenticated ? children : null;

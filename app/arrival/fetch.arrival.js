@@ -9,7 +9,7 @@ export const useArrivals = () => {
     try {
       const response = await axiosInstance.get("/arrival");
       const arrivals = await response.data.arrivals;
-      //JSON.stringify({ ...arrivals, id: Number(arrivals.id) });
+      
       setArrivals(arrivals);
       setIsLoading(false);
     } catch (error) {

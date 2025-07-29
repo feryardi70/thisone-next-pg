@@ -93,19 +93,6 @@ export default function ArrivalList() {
     });
   };
 
-  //   const [validToken, setValidToken] = useState(false);
-
-  //   useEffect(() => {
-  //     if (typeof window !== "undefined") {
-  //       const addToken = localStorage.getItem("addtoken");
-
-  //       if (typeof addToken == String) {
-  //         console.log("Token is still valid.");
-  //         setValidToken(true);
-  //       }
-  //     }
-  //   }, []);
-
   return (
     <div>
       {loadingSession ? (

@@ -4,9 +4,8 @@ import jwt from "jsonwebtoken";
 
 export async function POST(request) {
   if (request.method !== "POST") {
-    // Return 405 if the method is not POST
+    
     return NextResponse.json({ msg: "Method Not Allowed. Use POST." }, { status: 405 });
-    //return res.status(405).json({ message: "Method Not Allowed. Use POST." });
   }
 
   try {

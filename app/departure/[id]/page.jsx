@@ -1,8 +1,6 @@
 "use client";
 
-//import Link from "next/link";
 import { useState, useEffect } from "react";
-//import axios from "axios";
 import { useParams } from "next/navigation";
 import { axiosInstance } from "@/app/features/axios.instance";
 import { editDeparture } from "../fetch.product";
@@ -29,17 +27,6 @@ export default function EditDeparture() {
   }, [id]);
 
   const renderDeparture = () => {
-    //let i = 0;
-    // const [departure, setDeparture] = useState({
-    //   airline: "",
-    //   flightnumber: "",
-    //   destination: "",
-    //   departdate: "",
-    //   departtime: "",
-    //   gate: "",
-    //   remark: "",
-    //   id: "",
-    // });
 
     return (
       <div className="flex justify-between">

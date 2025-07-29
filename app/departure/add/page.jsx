@@ -30,16 +30,6 @@ export default function InsertDeparture() {
     }
   }, [session, router]);
 
-  // const [data, setData] = useState({
-  //   airline: "",
-  //   flightnumber: "",
-  //   destination: "",
-  //   departdate: "",
-  //   departtime: "",
-  //   gate: "",
-  //   remark: "",
-  // });
-
   const formik = useFormik({
     initialValues: {
       airline: "",
@@ -78,39 +68,9 @@ export default function InsertDeparture() {
     },
   });
 
-  // const handleChange = (e) => {
-  //   const value = e.target.value;
-  //   setData({
-  //     ...data,
-  //     [e.target.name]: value,
-  //   });
-  // };
-
   const handleChange = (e) => {
     formik.setFieldValue(e.target.name, e.target.value);
   };
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   const departureData = {
-  //     airline: data.airline,
-  //     flightnumber: data.flightnumber,
-  //     destination: data.destination,
-  //     departdate: data.departdate,
-  //     departtime: data.departtime,
-  //     gate: data.gate,
-  //     remark: data.remark,
-  //   };
-  //   //console.log(departureData);
-  //   axiosInstance.post("/departure", departureData).then((response) => {
-  //     console.log(response.data.msg);
-  //     if (response.data.msg == "add Departure succeded") {
-  //       router.push("/departure");
-  //     } else {
-  //       console.log("failed to add data");
-  //     }
-  //   });
-  // };
 
   return (
     <div className="flex h-screen justify-center items-center">
