@@ -1,19 +1,18 @@
 import { NextResponse } from "next/server";
-import prisma from "../db";
+//import prisma from "../db";
+import { createArrival, getAllArrivals } from "@/app/repository/arrivalRepository";
 
 export async function POST(request) {
   try {
     const { airline, flightnumber, origin, arrivedate, arrivetime, baggage, remark } = await request.json();
-    await prisma.Arrival.create({
-      data: {
-        airline,
-        flightnumber,
-        origin,
-        arrivedate,
-        arrivetime,
-        baggage,
-        remark,
-      },
+    await createArrival({
+      airline,
+      flightnumber,
+      origin,
+      arrivedate,
+      arrivetime,
+      baggage,
+      remark,
     });
 
     return NextResponse.json({ msg: "add Arrival succeded" }, { status: 201 });
@@ -23,6 +22,6 @@ export async function POST(request) {
 }
 
 export async function GET(request) {
-  const arrivals = await prisma.Arrival.findMany();
+  const arrivals = await getAllArrivals();
   return NextResponse.json({ arrivals }, { status: 201 });
 }

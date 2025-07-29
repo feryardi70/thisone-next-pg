@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
-import prisma from "../db";
+//import prisma from "../db";
 import bcrypt from "bcryptjs";
+import { getUserbyUsername, createUser } from "@/app/repository/userRepository";
 
 export async function POST(request) {
   try {
@@ -8,12 +9,7 @@ export async function POST(request) {
 
     const hashPassw = bcrypt.hashSync(password, 10);
 
-    await prisma.User.create({
-      data: {
-        username,
-        password: hashPassw,
-      },
-    });
+    await createUser(username, hashPassw);
 
     return NextResponse.json({ msg: "successfully register user" }, { status: 201 });
   } catch (error) {
@@ -25,11 +21,7 @@ export async function GET(request) {
   const { searchParams } = new URL(request.url);
   const username = searchParams.get("username");
 
-  const user = await prisma.User.findFirst({
-    where: {
-      username,
-    },
-  });
+  const user = await getUserbyUsername(username);
 
   // If user is found, return the user data
   return NextResponse.json(user, { status: 200 });

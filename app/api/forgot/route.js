@@ -1,21 +1,18 @@
 "use server";
 
 import { NextResponse } from "next/server";
-import prisma from "../db";
+//import prisma from "../db";
 import { cookies } from "next/headers";
 import { generateToken } from "./token.service";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import { getUserbyUsername, updateUser } from "@/app/repository/userRepository";
 
 export async function POST(request) {
   try {
     const { username } = await request.json();
 
-    const user = await prisma.User.findFirst({
-      where: {
-        username,
-      },
-    });
+    const user = await getUserbyUsername(username);
 
     if (!user) {
       return NextResponse.json({ msg: "not found" });
@@ -68,12 +65,7 @@ export async function PATCH(request) {
     // Hash the new password
     const hashPass = await bcrypt.hash(password, 10);
 
-    await prisma.user.update({
-      where: { id: parseInt(id) },
-      data: {
-        password: hashPass,
-      },
-    });
+    await updateUser(id, { password: hashPass });
 
     cookies().set({
       name: "resetToken",
