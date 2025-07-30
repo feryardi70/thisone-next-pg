@@ -5,6 +5,7 @@ import { useParams } from "next/navigation";
 import { axiosInstance } from "@/app/features/axios.instance";
 import { editArrival } from "../fetch.arrival";
 import { useRouter } from "next/navigation";
+import DepartureRoute from "@/app/component/DepartureRouteWrap";
 
 export default function EditArrival() {
   const router = useRouter();
@@ -40,7 +41,9 @@ export default function EditArrival() {
             id="airline"
             name="airline"
             value={arrival.airline || ""}
-            onChange={(e) => setArrival({ ...arrival, airline: e.target.value })}
+            onChange={(e) =>
+              setArrival({ ...arrival, airline: e.target.value })
+            }
             placeholder="masukkan kode airline"
             aria-describedby="airline"
           />
@@ -54,7 +57,9 @@ export default function EditArrival() {
             id="flightnumber"
             name="flightnumber"
             value={arrival.flightnumber || ""}
-            onChange={(e) => setArrival({ ...arrival, flightnumber: e.target.value })}
+            onChange={(e) =>
+              setArrival({ ...arrival, flightnumber: e.target.value })
+            }
             placeholder="1266"
             aria-describedby="flightnumber"
           />
@@ -82,7 +87,9 @@ export default function EditArrival() {
             id="arrivedate"
             name="arrivedate"
             value={arrival.arrivedate || ""}
-            onChange={(e) => setArrival({ ...arrival, arrivedate: e.target.value })}
+            onChange={(e) =>
+              setArrival({ ...arrival, arrivedate: e.target.value })
+            }
             aria-describedby="arrivedate"
           />
         </div>
@@ -97,7 +104,9 @@ export default function EditArrival() {
             id="arrivetime"
             name="arrivetime"
             value={arrival.arrivetime || ""}
-            onChange={(e) => setArrival({ ...arrival, arrivetime: e.target.value })}
+            onChange={(e) =>
+              setArrival({ ...arrival, arrivetime: e.target.value })
+            }
             aria-describedby="arrivetime"
           />
 
@@ -110,7 +119,9 @@ export default function EditArrival() {
             id="baggage"
             name="baggage"
             value={arrival.baggage || ""}
-            onChange={(e) => setArrival({ ...arrival, baggage: e.target.value })}
+            onChange={(e) =>
+              setArrival({ ...arrival, baggage: e.target.value })
+            }
             placeholder="01"
             aria-describedby="baggage"
           />
@@ -161,17 +172,27 @@ export default function EditArrival() {
   };
 
   return (
-    <div className="flex h-screen justify-center items-center">
-      <div className="px-5 py-5 shadow-md max-w-xl min-h-96 w-full border-t-4 border-fuchsia-500">
-        <h2 className="mb-5 text-center text-3xl">Form Edit Flight Arrival</h2>
+    <DepartureRoute>
+      <div className="flex h-screen justify-center items-center">
+        <div className="px-5 py-5 shadow-md max-w-xl min-h-96 w-full border-t-4 border-fuchsia-500">
+          <h2 className="mb-5 text-center text-3xl">
+            Form Edit Flight Arrival
+          </h2>
 
-        <form onSubmit={(e) => handleSubmitForEdit(e)} className="flex flex-col">
-          {renderArrival()}
-          <button type="submit" className="px-2 py-2 bg-fuchsia-500 rounded text-white">
-            {loading ? "Processing..." : "Edit"}
-          </button>
-        </form>
+          <form
+            onSubmit={(e) => handleSubmitForEdit(e)}
+            className="flex flex-col"
+          >
+            {renderArrival()}
+            <button
+              type="submit"
+              className="px-2 py-2 bg-fuchsia-500 rounded text-white"
+            >
+              {loading ? "Processing..." : "Edit"}
+            </button>
+          </form>
+        </div>
       </div>
-    </div>
+    </DepartureRoute>
   );
 }

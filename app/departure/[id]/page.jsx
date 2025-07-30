@@ -5,6 +5,7 @@ import { useParams } from "next/navigation";
 import { axiosInstance } from "@/app/features/axios.instance";
 import { editDeparture } from "../fetch.product";
 import { useRouter } from "next/navigation";
+import DepartureRoute from "@/app/component/DepartureRouteWrap";
 
 export default function EditDeparture() {
   const router = useRouter();
@@ -27,7 +28,6 @@ export default function EditDeparture() {
   }, [id]);
 
   const renderDeparture = () => {
-
     return (
       <div className="flex justify-between">
         <div className="flex flex-col w-[48%]">
@@ -41,7 +41,9 @@ export default function EditDeparture() {
             id="airline"
             name="airline"
             value={departure.airline || ""}
-            onChange={(e) => setDeparture({ ...departure, airline: e.target.value })}
+            onChange={(e) =>
+              setDeparture({ ...departure, airline: e.target.value })
+            }
             placeholder="masukkan kode airline"
             aria-describedby="airline"
           />
@@ -55,7 +57,9 @@ export default function EditDeparture() {
             id="flightnumber"
             name="flightnumber"
             value={departure.flightnumber || ""}
-            onChange={(e) => setDeparture({ ...departure, flightnumber: e.target.value })}
+            onChange={(e) =>
+              setDeparture({ ...departure, flightnumber: e.target.value })
+            }
             placeholder="1266"
             aria-describedby="flightnumber"
           />
@@ -69,7 +73,9 @@ export default function EditDeparture() {
             id="destination"
             name="destination"
             value={departure.destination || ""}
-            onChange={(e) => setDeparture({ ...departure, destination: e.target.value })}
+            onChange={(e) =>
+              setDeparture({ ...departure, destination: e.target.value })
+            }
             placeholder="nama kota"
             aria-describedby="destination"
           />
@@ -83,7 +89,9 @@ export default function EditDeparture() {
             id="departdate"
             name="departdate"
             value={departure.departdate || ""}
-            onChange={(e) => setDeparture({ ...departure, departdate: e.target.value })}
+            onChange={(e) =>
+              setDeparture({ ...departure, departdate: e.target.value })
+            }
             aria-describedby="departdate"
           />
         </div>
@@ -98,7 +106,9 @@ export default function EditDeparture() {
             id="departtime"
             name="departtime"
             value={departure.departtime || ""}
-            onChange={(e) => setDeparture({ ...departure, departtime: e.target.value })}
+            onChange={(e) =>
+              setDeparture({ ...departure, departtime: e.target.value })
+            }
             aria-describedby="departtime"
           />
 
@@ -111,7 +121,9 @@ export default function EditDeparture() {
             id="gate"
             name="gate"
             value={departure.gate || ""}
-            onChange={(e) => setDeparture({ ...departure, gate: e.target.value })}
+            onChange={(e) =>
+              setDeparture({ ...departure, gate: e.target.value })
+            }
             placeholder="01"
             aria-describedby="gate"
           />
@@ -125,7 +137,9 @@ export default function EditDeparture() {
             id="remark"
             name="remark"
             value={departure.remark || ""}
-            onChange={(e) => setDeparture({ ...departure, remark: e.target.value })}
+            onChange={(e) =>
+              setDeparture({ ...departure, remark: e.target.value })
+            }
             aria-describedby="remark"
           />
 
@@ -164,17 +178,27 @@ export default function EditDeparture() {
   };
 
   return (
-    <div className="flex h-screen justify-center items-center">
-      <div className="px-5 py-5 shadow-md max-w-xl min-h-96 w-full border-t-4 border-fuchsia-500">
-        <h2 className="mb-5 text-center text-3xl">Form Edit Flight Departure</h2>
+    <DepartureRoute>
+      <div className="flex h-screen justify-center items-center">
+        <div className="px-5 py-5 shadow-md max-w-xl min-h-96 w-full border-t-4 border-fuchsia-500">
+          <h2 className="mb-5 text-center text-3xl">
+            Form Edit Flight Departure
+          </h2>
 
-        <form onSubmit={(e) => handleSubmitForEdit(e)} className="flex flex-col">
-          {renderDeparture()}
-          <button type="submit" className="px-2 py-2 bg-fuchsia-500 rounded text-white">
-            {loading ? "Processing..." : "Edit"}
-          </button>
-        </form>
+          <form
+            onSubmit={(e) => handleSubmitForEdit(e)}
+            className="flex flex-col"
+          >
+            {renderDeparture()}
+            <button
+              type="submit"
+              className="px-2 py-2 bg-fuchsia-500 rounded text-white"
+            >
+              {loading ? "Processing..." : "Edit"}
+            </button>
+          </form>
+        </div>
       </div>
-    </div>
+    </DepartureRoute>
   );
 }

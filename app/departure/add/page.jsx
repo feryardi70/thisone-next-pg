@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useFormik } from "formik";
 import { saveDeparture } from "../fetch.product";
 import getSession from "@/app/session";
+import DepartureRoute from "@/app/component/DepartureRouteWrap";
 
 export default function InsertDeparture() {
   const router = useRouter();
@@ -74,9 +75,7 @@ export default function InsertDeparture() {
 
   return (
     <div className="flex h-screen justify-center items-center">
-      {loadingSession ? (
-        <div className="text-5xl">loading... please wait...</div>
-      ) : (
+      <DepartureRoute>
         <div className="px-5 py-5 shadow-md max-w-xl min-h-96 w-full border-t-4 border-fuchsia-500">
           <h2 className="mb-5 text-center text-3xl">Form Add Flight Departure</h2>
 
@@ -188,7 +187,7 @@ export default function InsertDeparture() {
             </button>
           </form>
         </div>
-      )}
+      </DepartureRoute>
     </div>
   );
 }

@@ -7,6 +7,7 @@ import { useArrivals } from "./fetch.arrival";
 import { axiosInstance } from "../features/axios.instance";
 import { useRouter } from "next/navigation";
 import getSession from "../session";
+import DepartureRoute from "../component/DepartureRouteWrap";
 
 export default function ArrivalList() {
   const router = useRouter();
@@ -80,7 +81,7 @@ export default function ArrivalList() {
           <td className="text-center px-3 py-2">{arrive.remark}</td>
           <td className="text-center px-3 py-2">
             <span className="px-3 py-1 bg-green-400 rounded-lg">
-              <Link href={`/arrival/${arrive.id}`} target="_blank">
+              <Link href={`/arrival/${arrive.id}`}>
                 edit
               </Link>
             </span>
@@ -95,9 +96,7 @@ export default function ArrivalList() {
 
   return (
     <div>
-      {loadingSession ? (
-        <div className="text-5xl">loading... please wait...</div>
-      ) : (
+      <DepartureRoute>
         <div className="px-10 py-10 border border-red-800">
           <div>
             <h1 className="text-4xl tracking-wide mb-3">Arrival Dashboard</h1>
@@ -151,7 +150,7 @@ export default function ArrivalList() {
             </div>
           )}
         </div>
-      )}
+      </DepartureRoute>
     </div>
   );
 }
