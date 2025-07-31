@@ -128,7 +128,7 @@ export default function SignIn() {
                     value={formState.username}
                     onChange={handleChange}
                     placeholder="Enter your username"
-                    className="pl-12 h-12 bg-white/10 border-white/20 text-white placeholder:text-white/50 rounded-xl backdrop-blur-sm focus:bg-white/20 focus:border-white/40 transition-all duration-300"
+                    className="pl-12 h-12 bg-white/10 border-white/20 text-black placeholder:text-white/50 rounded-xl backdrop-blur-sm focus:bg-white/20 focus:border-white/40 transition-all duration-300"
                     required
                   />
                 </div>
@@ -148,7 +148,7 @@ export default function SignIn() {
                     value={formState.password}
                     onChange={handleChange}
                     placeholder="Enter your password"
-                    className="pl-12 pr-12 h-12 bg-white/10 border-white/20 text-white placeholder:text-white/50 rounded-xl backdrop-blur-sm focus:bg-white/20 focus:border-white/40 transition-all duration-300"
+                    className="pl-12 pr-12 h-12 bg-white/10 border-white/20 text-black placeholder:text-white/50 rounded-xl backdrop-blur-sm focus:bg-white/20 focus:border-white/40 transition-all duration-300"
                     required
                   />
                   <button
