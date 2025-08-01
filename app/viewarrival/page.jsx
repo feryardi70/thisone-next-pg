@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { axiosInstance } from "../features/axios.instance";
 
-export default function viewArrival() {
+export default function ViewArrival() {
   const [arrivals, setArrivals] = useState([]);
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
